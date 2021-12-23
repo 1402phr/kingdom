@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 public class MainController {
-	@RequestMapping("/")
+	@RequestMapping({"/", "/main.cnu"})
 	public String getView() {
 		return "main";
 	}

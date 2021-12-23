@@ -4,10 +4,10 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>1st JSP 파일</title>
+<title>Kingdom Main</title>
 <link rel="stylesheet" type="text/css" href="/kingdom/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/kingdom/css/kingdom.css">
-<script type="text/javascript" src="/kingdom/js/jquery-3.5.1.min.js"></script>
+<script type="text/javascript" src="/kingdom/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/kingdom/js/main.js"></script>
 <style>
 	h5, span {
@@ -23,20 +23,20 @@
 </script>
 </head>
 <body>
-	<form method="POST" action="/kingdom/member/memberInfo.cls" id="frm" name="frm">
+	<form method="POST" action="/kingdom/member/memberInfo.cnu" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
 	<div class="w3-content w3-center mw700">
-		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">CLS Project</h1>
+		<h1 class="w3-teal w3-padding" style="margin-bottom: 5px;">Kingdom Project</h1>
 		<div class="w3-col">
-			<c:if test="${empty sessionScope.SID}">
+			<c:if test="${empty SID}">
 				<div class="w3-col w3-border-bottom pdb10">
 					<span class="w3-col m2 w3-button w3-small w3-lime w3-hover-green w3-left" id="jbtn">Join</span>
 					<span class="w3-col m2 w3-button w3-small w3-blue w3-hover-light-blue w3-right" id="lbtn">Login</span>
 				</div>
 			</c:if>
 				<div class="w3-col" id="btnfr">
-			<c:if test="${not empty sessionScope.SID}">
+			<c:if test="${not empty SID}">
 					<div class="w3-col w3-border-bottom pdb10">
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-right mt0" id="obtn">LogOut</span>
 						<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-light-green w3-left mt0" id="ibtn">회원정보</span>
@@ -68,6 +68,5 @@
 				</div>
 		</div>
 	</div>
-	<img src="https://photos.app.goo.gl/ZyG9Kth9294CrhcLA" style="width:400px" />
 </body>
 </html>
