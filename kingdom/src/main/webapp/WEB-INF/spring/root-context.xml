@@ -27,4 +27,9 @@
 		<property name="dataSource" ref="dataSource" />
 		<property name="configLocation" value="classpath:/mybatisConf/mybatis-config.xml" />
 	</bean>
+	
+	<!-- 데이터베이스작업 처리 객체 -->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactory"/>
+	</bean>
 </beans>
