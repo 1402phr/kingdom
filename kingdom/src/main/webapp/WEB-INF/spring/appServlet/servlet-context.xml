@@ -28,8 +28,8 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
+	<beans:bean id="mDao" class="org.cnu.kingdom.dao.MemberDao" />
+	
 	<context:component-scan base-package="org.cnu.kingdom" />
-	
-	
 	
 </beans:beans>

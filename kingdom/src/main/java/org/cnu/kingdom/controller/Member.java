@@ -6,7 +6,9 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.cnu.kingdom.dao.MemberDao;
 import org.cnu.kingdom.vo.MemberVO;
+import org.springframework.beans.factory.annotation.Autowired;
 /**
  * 이 클래스는 회원에 관련된 요청을 처리하는 클래스
  * @author 전은석
@@ -27,6 +29,9 @@ import org.springframework.web.servlet.view.RedirectView;
 @Controller
 @RequestMapping("/member")
 public class Member {
+	
+	@Autowired
+	MemberDao mDao;
 	
 	@RequestMapping("/login.cnu")
 	public ModelAndView loginForm(ModelAndView mv, RedirectView rv,
@@ -53,9 +58,22 @@ public class Member {
 	}
 	
 	@RequestMapping("/loginProc.cnu")
-	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO /* String id, String pw */) {
-		System.out.println("id : " + mVO.getId());
-		System.out.println("pw : " + mVO.getPw());
+	public ModelAndView loginProc(ModelAndView mv, MemberVO mVO, 
+									HttpSession session, RedirectView rv 
+									/* String id, String pw */) {
+		int cnt = mDao.getLogin(mVO);
+		
+		if(cnt == 1) {
+			// 로그인 성공처리
+			session.setAttribute("SID", mVO.getId());
+			// main 페이지로 redirect
+			rv.setUrl("/kingdom/");
+		} else {
+			// 로그인 실패
+			rv.setUrl("/kingdom/member/login.cnu");
+		}
+		// 뷰 심고
+		mv.setView(rv);
 		
 		return mv;
 	}
