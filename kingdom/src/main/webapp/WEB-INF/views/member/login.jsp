@@ -7,7 +7,7 @@
 <link rel="stylesheet" type="text/css" href="/kingdom/css/w3.css">
 <link rel="stylesheet" type="text/css" href="/kingdom/css/kingdom.css">
 <script type="text/javascript" src="/kingdom/js/jquery-3.6.0.min.js"></script>
-<script type="text/javascript" src="/kingdom/js/member/login.js"></script>
+<script type="text/javascript" src="/kingdom/js/login.js"></script>
 <style type="text/css">
 	label {
 		font-size: 16pt;
@@ -23,7 +23,7 @@
 <body>
 	<div class="w3-content w3-center mw700">
 		<h1 class="w3-blue w3-padding w3-card-4">Login</h1>
-		<form method="POST" action="" class="w3-col w3-padding w3-card-4 w3-margin-top" id="frm" name="frm">
+		<form method="POST" action="/kingdom/member/loginProc.cnu" class="w3-col w3-padding w3-card-4 w3-margin-top" id="frm" name="frm">
 			<div class="w3-col w3-margin-top">
 				<label for="id" class="w3-col m2 w3-right-align w3-text-grey">I D : &nbsp;</label>
 				<input type="text" name="id" id="id" placeholder="아이디를 입력하세요!"
