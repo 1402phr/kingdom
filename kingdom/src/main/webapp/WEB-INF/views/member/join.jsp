@@ -32,7 +32,7 @@
 <body>
 	<div class="w3-content w3-margin-top mxw700">
 		<!-- 타이틀 -->
-		<h1 class="w3-pink w3-center w3-padding w3-card-4">Cls 회원가입</h1>
+		<h1 class="w3-pink w3-center w3-padding w3-card-4">Kingdom 회원가입</h1>
 		<form method="POST" action="" name="frm" id="frm"
 			class="w3-col w3-margin-top w3-margin-bottom w3-padding w3-card-4">
 			<div>
@@ -44,7 +44,7 @@
 				<div class="w3-col s8 mgl10">
 					<input type="text" name="id" id="id" class="w3-col w3-input w3-border mgb10" style="width: 338px;">
 					<div class="w3-col w100 w3-button w3-blue w3-right" id="idck">id check</div>
-					<span class="w3-col mgb10" id="idmsg"></span>
+					<span class="w3-col mgb10 w3-center" id="idmsg"></span>
 				</div>
 			</div>
 			<div>

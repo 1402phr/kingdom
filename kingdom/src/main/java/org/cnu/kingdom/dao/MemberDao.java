@@ -15,4 +15,9 @@ public class MemberDao {
 	public int getLogin(MemberVO mVO) {
 		return sqlSession.selectOne("mSQL.login", mVO);
 	}
+	
+	// 아이디체크 데이터베이스 작업 전담 처리함수
+	public int getIdCount(String id) {
+		return sqlSession.selectOne("mSQL.idCheck", id);
+	}
 }

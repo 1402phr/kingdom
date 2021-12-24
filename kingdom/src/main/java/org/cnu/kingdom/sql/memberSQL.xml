@@ -12,4 +12,13 @@
 			id = #{id}
 			AND pw = #{pw}
 	</select>
+	
+	<select id="idCheck" resultType="int" parameterType="string">
+		SELECT
+			count(*)
+		FROM
+			member
+		WHERE
+			id = #{id}
+	</select>
 </mapper>

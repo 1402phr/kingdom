@@ -5,7 +5,7 @@ import java.text.*;
 
 public class MemberVO {
 	private int mno, ano;
-	private String id, pw, name, mail, tel, gen, avatar, sdate;
+	private String id, pw, name, mail, tel, gen, avatar, sdate, msg;
 	private Date joindate;
 	public int getMno() {
 		return mno;
@@ -70,6 +70,12 @@ public class MemberVO {
 	public void setSdate() {
 		SimpleDateFormat form = new SimpleDateFormat("yyyy년 MM월 dd일 HH:mm:ss");
 		sdate = form.format(joindate);
+	}
+	public String getMsg() {
+		return msg;
+	}
+	public void setMsg(String msg) {
+		this.msg = msg;
 	}
 	public Date getJoindate() {
 		return joindate;
