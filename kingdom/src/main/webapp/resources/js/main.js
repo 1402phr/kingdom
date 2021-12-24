@@ -1,6 +1,7 @@
 $(document).ready(function(){
 	$('.w3-button').click(function(){
 		var tmp = $(this).attr('id');
+		alert(tmp);
 		var spath = '';
 		switch(tmp){
 			case 'lbtn':
@@ -11,6 +12,9 @@ $(document).ready(function(){
 				break;
 			case 'jbtn':
 				spath = '/kingdom/member/join.cnu';
+				break;
+			case 'mlbtn':
+				spath = '/kingdom/member/memberList.cnu';
 				break;
 			case 'ibtn':
 				$('#frm').submit();
@@ -29,7 +33,7 @@ $(document).ready(function(){
 				spath = '/kingdom/survey/surveyInfo.cnu';
 				break;
 		}
-		
+		alert(spath);
 		$(location).attr('href', spath);
 	});
 	

@@ -59,6 +59,49 @@ $(document).ready(function(){
 		}
 	});
 	
+	// 비밀번호 체크 이벤트 처리
+	$('#repw').keyup(function(){
+		// 비밀번호를 읽고
+		var pw = $('#pw').val();
+		// 입력된 확인비밀번호를 읽고
+		var repw = $('#repw').val();
+		// 두개를 비교해서 메세지 출력한다.
+		if(pw == repw) {
+			// 같은 경우
+			$('#mail').focus();
+			$('#repwmsg').removeClass('w3-text-red').addClass('w3-text-green').html('* 비밀번호가 일치합니다.');
+			$('#repwmsg').css('display', 'block');
+		} else {
+			// 다른 경우
+			$('#repwmsg').removeClass('w3-text-green').addClass('w3-text-red').html('# 비밀번호가 일치하지 않습니다.');
+			$('#repwmsg').css('display', 'block');
+			
+		}
+	});
+	
+	// 회원가입버튼 이벤트 처리
+	$('#jbtn').click(function(){
+		// 할일
+		// 입력된 데이터를 읽어온다. ==> 데이터 유효성 검사
+		var name = $('#name').val();
+		var id= $('#id').val();
+		var pw = $('#pw').val();
+		var repw = $('#repw').val();
+		var mail = $('#mail').val();
+		var tel = $('#tel').val();
+		var gen = $('[name="gen"]:checked').val();
+		var ano = $('[name="ano"]:checked').val();
+		
+		// 입력되지 않은 데이터가 있으면 뷰로 다시 돌려보낸다.
+		if(!(name && id && pw && repw && mail && tel && gen && ano && (pw == repw))){
+			// 이 경우는 입력사항이 누락되었거나 비밀번호가 다른 경우이므로 다시 돌려보낸다.
+			return;
+		}
+		
+		// 모두입력했으면 서버로 데이터를 보낸다.
+		$('#frm').attr('action', '/kingdom/member/joinProc.cnu');
+		$('#frm').submit();
+	});
 	
 	
 	

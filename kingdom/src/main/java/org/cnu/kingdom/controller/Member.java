@@ -1,6 +1,7 @@
 package org.cnu.kingdom.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -131,5 +132,80 @@ public class Member {
 			mVO.setMsg("NO");
 		}
 		return mVO;
+	}
+	
+	@RequestMapping("/joinProc.cnu")
+	public ModelAndView joinProc(ModelAndView mv, MemberVO mVO, 
+								HttpSession session, RedirectView rv) {
+		int cnt = mDao.addMember(mVO);
+		
+		System.out.println("cnt : " + cnt);
+		
+		if(cnt == 1) {
+			// 가입 성공한 경우
+			session.setAttribute("SID", mVO.getId()); // 로그인 처리
+			rv.setUrl("/kingdom/");
+		} else {
+			// 실패한 경우
+			rv.setUrl("/kingdom/member/join.cnu");
+		}
+		
+		mv.setView(rv);
+		return mv; 
+	}
+	
+	@RequestMapping("/memberList.cnu")
+	public ModelAndView getMemberList(ModelAndView mv, MemberVO mVO) {
+		List list = mDao.getList();
+		
+		mv.addObject("LIST", list);
+		mv.addObject("COLOR", getColorList());
+		
+		mv.setViewName("member/memberList");
+		return mv;
+	}
+	
+	@RequestMapping("/memberInfo.cnu")
+	@ResponseBody
+	public MemberVO getInfo(ModelAndView mv, MemberVO mVO) {
+		mVO = mDao.getInfo(mVO);
+		/*
+		System.out.println(mVO);
+		mv.addObject("DATA", mVO);
+		mv.setViewName("member/memberInfo");
+		*/
+		mVO.setSdate();
+		return mVO;
+	}
+	
+	public ArrayList getColorList() {
+		ArrayList list = new ArrayList();
+		list.add("w3-red");
+		list.add("w3-pink");
+		list.add("w3-purple");
+		list.add("w3-deep-purple");
+		list.add("w3-blue");
+		list.add("w3-cyan");
+		list.add("w3-aqua");
+		list.add("w3-green");
+		list.add("w3-light-green");
+		list.add("w3-lime");
+		list.add("w3-yellow");
+		list.add("w3-amber");
+		list.add("w3-orange");
+		list.add("w3-deep-orange");
+		list.add("w3-black");
+		list.add("w3-dark-grey");
+		list.add("w3-grey");
+		list.add("w3-light-grey");
+		list.add("w3-blue-grey");
+		list.add("w3-brown");
+		list.add("w3-pale-red");
+		list.add("w3-sand");
+		list.add("w3-pale-yellow");
+		list.add("w3-khaki");
+		list.add("w3-pale-blue");
+		list.add("w3-light-blue");		
+		return list;
 	}
 }

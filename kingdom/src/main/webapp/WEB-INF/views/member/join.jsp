@@ -90,7 +90,7 @@
 						 		<label for="mavt${idx}">
 						 			<img src="/kingdom/img/avatar/${data.avatar}" class="w3-col avtimg">
 						 		</label>
-						 		<input type="radio" name="avt" id="mavt${data.ano}" value="${data.ano}">
+						 		<input type="radio" name="ano" id="mavt${data.ano}" value="${data.ano}">
 						 	</div>
 						 </c:if>
 					</c:forEach>
@@ -102,7 +102,7 @@
 						 		<label for="favt${data.ano}">
 						 			<img src="/kingdom/img/avatar/${data.avatar}" class="w3-col avtimg">
 						 		</label>
-						 		<input type="radio" name="avt" id="favt${data.ano}" value="${data.ano}">
+						 		<input type="radio" name="ano" id="favt${data.ano}" value="${data.ano}">
 						 	</div>
 						 </c:if>
 				 	</c:forEach>
