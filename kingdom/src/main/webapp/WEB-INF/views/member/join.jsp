@@ -20,7 +20,7 @@
 		width: 102px;
 		height: 117px;
 	}
-	#pwmsg, #repwmsg, #avtfr, #mavt, #favt, #idmsg {
+	#pwmsg, #repwmsg, #avtfr, #idmsg {
 		display: none;
 	}
 	
@@ -84,6 +84,30 @@
 				<label class="w3-col s3 w3-right-align clrgrey ft14 mgb10">아 바 타 : </label>
 				<div class="w3-col s8 mgl10 mgb10 w3-center">
 						<div class="avtboxfr w3-center w3-margin-top" id="mavt">
+					<c:forEach var="data" items="${LIST}">
+						<c:if test="${data.gen == 'M' }">
+						 	<div class="avtbox">
+						 		<label for="mavt${idx}">
+						 			<img src="/kingdom/img/avatar/${data.avatar}" class="w3-col avtimg">
+						 		</label>
+						 		<input type="radio" name="avt" id="mavt${data.ano}" value="${data.ano}">
+						 	</div>
+						 </c:if>
+					</c:forEach>
+						</div>
+						 <div class="avtboxfr w3-center w3-margin-top" id="favt">
+					<c:forEach var="data" items="${LIST}">
+						 <c:if test="${data.gen == 'F' }">
+						 	<div class="avtbox">
+						 		<label for="favt${data.ano}">
+						 			<img src="/kingdom/img/avatar/${data.avatar}" class="w3-col avtimg">
+						 		</label>
+						 		<input type="radio" name="avt" id="favt${data.ano}" value="${data.ano}">
+						 	</div>
+						 </c:if>
+				 	</c:forEach>
+				 		</div>
+<!--  
 					<c:forEach var="idx" begin="1" end="3">
 						 	<div class="avtbox">
 						 		<label for="mavt${idx}">
@@ -102,7 +126,7 @@
 						 		<input type="radio" name="avt" id="favt${idx}" value="${idx}">
 						 	</div>
 				 	</c:forEach>
-				 		</div>
+-->				 	
 				</div>
 			</div>
 		</form>

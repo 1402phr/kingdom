@@ -1,6 +1,7 @@
 package org.cnu.kingdom.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletResponse;
@@ -106,6 +107,8 @@ public class Member {
 			rv.setUrl("/kingdom/main.cnu");
 			mv.setView(rv);
 		} else {
+			List<MemberVO> list = mDao.avtList();
+			mv.addObject("LIST", list);
 			// 3. 로그인 안되어있으면 뷰 부르고
 			mv.setViewName("member/join");
 		}

@@ -21,4 +21,15 @@
 		WHERE
 			id = #{id}
 	</select>
+	
+	<select id="avtList" resultType="mVO">
+		SELECT
+			ano, savename avatar, gen
+		FROM
+			avatar
+		WHERE
+			ano != 10
+		ORDER BY
+			ano
+	</select>
 </mapper>

@@ -43,4 +43,43 @@ $(document).ready(function(){
 			}
 		});
 	});
+	
+	// 성별 체크 이벤트
+	$('[name="gen"]').change(function(){
+		
+		var sgen = $(this).val();
+		if(sgen == 'M'){
+			$('#favt').css('display', 'none');
+			$('#mavt').css('display', 'block');
+			$('#avtfr').css('display', 'block');
+		} else {
+			$('#mavt').css('display', 'none');
+			$('#favt').css('display', 'block');
+			$('#avtfr').css('display', 'block');
+		}
+	});
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 });
