@@ -20,7 +20,7 @@
 		width: 102px;
 		height: 117px;
 	}
-	#pwmsg, #repwmsg, #avtfr, #idmsg {
+	#pwmsg, #repwmsg, #avtfr, #mavt, #favt, #idmsg {
 		display: none;
 	}
 	
