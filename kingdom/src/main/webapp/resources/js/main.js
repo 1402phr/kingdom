@@ -1,7 +1,9 @@
 $(document).ready(function(){
 	$('.w3-button').click(function(){
 		var tmp = $(this).attr('id');
+/*
 		alert(tmp);
+*/
 		var spath = '';
 		switch(tmp){
 			case 'lbtn':
@@ -33,7 +35,6 @@ $(document).ready(function(){
 				spath = '/kingdom/survey/surveyInfo.cnu';
 				break;
 		}
-		alert(spath);
 		$(location).attr('href', spath);
 	});
 	

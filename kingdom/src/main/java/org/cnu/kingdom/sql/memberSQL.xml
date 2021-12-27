@@ -22,6 +22,7 @@
 			id = #{id}
 	</select>
 	
+	
 	<select id="avtList" resultType="mVO">
 		SELECT
 			ano, savename avatar, gen
@@ -52,8 +53,14 @@
 		WHERE
 			isshow = 'Y'
 			AND m.ano = a.ano
+		<if test="mno neq 0">
 			AND mno = #{mno}
+		</if>
+		<if test="id neq null">
+			AND id = #{id}
+		</if>
 	</select>
+	
 	
 	<insert id="addMember" parameterType="mVO">
 		<selectKey keyProperty="mno" resultType="int" order="BEFORE">
@@ -69,4 +76,53 @@
 			#{mno}, #{name}, #{id}, #{pw}, #{mail}, #{tel}, #{gen}, #{ano}
 		)
 	</insert>
+	
+	<!-- 회워탈퇴 질의명령 -->
+	<update id="removeMember" parameterType="mVO">
+		UPDATE
+			member
+		SET
+			isshow = 'N'
+		WHERE
+			mno = #{mno}
+			AND pw = #{pw}
+	</update>
+	
+	<!-- 회원정보 수정 질의명령 -->
+	<update id="editInfo" parameterType="mVO">
+		UPDATE
+			member
+<!-- 
+		<set>
+			<if test="pw != null">
+				pw = #{pw},
+			</if>
+			<if test="mail != null">
+				mail = #{mail},
+			</if>
+			<if test="tel != null">
+				tel = #{tel},
+			</if>
+			<if test="ano != 0">
+				ano = #{ano},
+			</if>
+		</set>
+ -->
+		<trim prefix="set" suffixOverrides=",">
+			<if test="pw != null">
+				pw = #{pw},
+			</if>
+			<if test="mail != null">
+				mail = #{mail},
+			</if>
+			<if test="tel != null">
+				tel = #{tel},
+			</if>
+			<if test="ano != 0">
+				ano = #{ano},
+			</if>
+		</trim>
+		WHERE
+			mno = #{mno}
+	</update>
 </mapper>

@@ -2,6 +2,9 @@ $(document).ready(function(){
 	$('#rbtn').click(function(){
 		// 리셋버튼이 클릭된 경우
 		// $('#frm').reset();
+		
+		$('#repwmsg').css('display', 'none');
+		
 		document.frm.reset();
 	});
 	
@@ -46,18 +49,29 @@ $(document).ready(function(){
 	
 	// 성별 체크 이벤트
 	$('[name="gen"]').change(function(){
+		var st = $('#avtfr').css('display');
 		
 		var sgen = $(this).val();
-		if(sgen == 'M'){
-			$('#favt').css('display', 'none');
-			$('#mavt').css('display', 'block');
-			$('#avtfr').css('display', 'block');
+		
+		function avtFunc(){
+			if(sgen == 'M'){
+				$('#favt').css('display', 'none');
+				$('#mavt').css('display', 'block');
+				$('#avtfr').stop().slideDown(500);
+			} else {
+				$('#mavt').css('display', 'none');
+				$('#favt').css('display', 'block');
+				$('#avtfr').stop().slideDown(500);
+			}
+		}
+		
+		if(st != 'none'){
+			$('#avtfr').stop().slideUp(500, avtFunc);
 		} else {
-			$('#mavt').css('display', 'none');
-			$('#favt').css('display', 'block');
-			$('#avtfr').css('display', 'block');
+			avtFunc();
 		}
 	});
+	
 	
 	// 비밀번호 체크 이벤트 처리
 	$('#repw').keyup(function(){
@@ -103,7 +117,47 @@ $(document).ready(function(){
 		$('#frm').submit();
 	});
 	
-	
+	/* 회원 정보수정 이벤트 처리 */
+	$('#ebtn').click(function(){
+		var cmail = $('#cmail').text();
+		var ctel = $('#ctel').text();
+		var cano = $('#cano').text();
+		
+		var pw = $('#pw').val();
+		var repw = $('#repw').val();
+		var mail = $('#mail').val();
+		var tel = $('#tel').val();
+		var ano = $('[name="ano"]:checked').val();
+		
+		if(pw){
+			if(pw == repw){
+				$('#repw').prop('disabled', 'true');
+			} else {
+				$('#repw').val('').focus();
+				return;
+			}
+		} else {
+			$('#pw').prop('disabled', 'true');
+			$('#repw').prop('disabled', 'true');
+		}
+		
+		if(cmail == mail){
+			$('#mail').prop('disabled', 'true');
+		}
+		
+		if(ctel == tel){
+			$('#tel').prop('disabled', 'true');
+		}
+		
+		if(cano == ano){
+			$('[name="ano"]:checked').prop('checked', '');
+		}
+		
+		
+		if(pw || (cmail == mail) || (ctel == tel) || (cano == ano)) {
+			$('#frm').submit();
+		}
+	});
 	
 	
 	

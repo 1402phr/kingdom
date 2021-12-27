@@ -9,28 +9,18 @@
 <link rel="stylesheet" type="text/css" href="/kingdom/css/kingdom.css">
 <script type="text/javascript" src="/kingdom/js/jquery-3.6.0.min.js"></script>
 <script type="text/javascript" src="/kingdom/js/info.js"></script>
-<!--  
--->
 </head>
 <body>
 	<div class="w3-content w3-center mw700">
 		<h1 class="w3-teal w3-card-4">[ ${DATA.name} ] 님 회원 정보</h1>
 		<div class="w3-col w3-border-bottom pdb10">
 			<span class="w3-cell m2 w3-button w3-small w3-green w3-hover-lime w3-left mt0 btnBox" id="hbtn">Home</span>
+	<c:if test="${not empty SID and (DATA.id eq SID)}">
 			<span class="w3-cell m2 w3-button w3-small w3-orange w3-hover-deep-orange w3-right mt0 btnBox" id="iebtn">정보수정</span>
 			<span class="w3-cell m2 w3-button w3-small w3-red w3-hover-pale-red w3-right mt0 btnBox" id="dbtn">탈 퇴</span>
+	</c:if>
 		</div>
-		<form method="POST" action="/kingdom/member/memberDel.cnu" 
-				id="dfrm" name="dfrm" style="display: none;"
-				class="w3-col w3-card-4 w3-padding w3-margin-bottom">
-			<input type="hidden" name="mno" id="mno" value="${DATA.mno}">
-			<label for="pw" class="w3-col m3 w3-text-grey ft18px">비밀번호 : </label>
-			<input type="password" id="pw" name="pw" 
-					class="w3-col m7 w3-input w3-border">
-			<div class="w3-col m2 pdh10">
-				<div class="w3-col w3-button w3-medium w3-red w3-hover-orange w3-left mt0" id="del">탈퇴처리</div>
-			</div>
-		</form>
+		
 		<div class="w3-col w3-card-4 w3-margin-top w3-padding">
 			<div class="w3-col">
 			<div class="w3-col w250 pd10">
@@ -56,66 +46,66 @@
 					</div>
 				</div>
 			</div>
-		
-			<!-- 정보수정태그 -->
-			<form class="w3-col" id="frm" name="frm" style="display: none;">
-				<input type="hidden" name="id" value="${SID}">
-				<div class="w3-col w3-border-top w3-margin-top w3-padding">
-					<span class="w3-cell m2 w3-button w3-small w3-blue w3-hover-aqua w3-right mt0 btnBox" id="ebtn">수 정</span>
-				</div>
-				
-				<div class="w3-col">
-					<label for="mail" class="w3-col l3 m3 w3-right-align w3-padding clslbl">회원 이메일 : </label>
-					<div class="w3-col l9 m12 w3-padding">
-						<input type="text" class="w3-input w3-border" id="mail" name="mail" value="${DATA.mail}">
-					</div>
-				</div>
-				
-				<div class="w3-col w3-margin-bottom">
-					<label class="w3-col l3 m3 w3-right-align w3-padding clslbl">아바타 선택 : </label>
-					<div class="w3-col l9 m12 w3-padding">
-						<div class="w3-col" id="avtfr">
-<!-- 
-							<c:forEach var="data" items="${LIST}">
-								<c:if test="${data.gen == DATA.gen}">
-									<div class="w3-third w3-center w3-padding avt${data.gen}fr">
-										<input type="radio" class="w3-col w3-radio-medium avt" name="avt" value="${data.ano}">
-										<div class="w3-col w3-border imgbox">
-											<img src="/kingdom/img/avatar/${data.savename}" class="imgsrc">
-										</div>
-									</div>
-								</c:if>
-							</c:forEach>
--->
-						</div>
-					</div>
-				</div>
-			</form>
 		</div>
-		
-		<!-- 메세지 확인 모달 -->
-<c:if test="${not empty MSG}">
-		<div id="id01" class="w3-modal" style="display: block;">
-		  <div class="w3-modal-content">
-		<c:if test="${MSG ne '수정에 실패했습니다.'}">
-		    <header class="w3-container w3-teal">
-		      <span onclick="document.getElementById('id01').style.display='none'" 
-		      class="w3-button w3-display-topright">&times;</span>
-		      <h2>Modal Header</h2>
-		    </header>
-		</c:if>
-		<c:if test="${MSG eq '수정에 실패했습니다.'}">
+
+<c:if test="${SID eq DATA.id }">
+	<!-- 회원탈퇴 모달 -->
+	<div id="leave" class="w3-modal" style="display: none;">
+			<div class="w3-modal-content">
 		    <header class="w3-container w3-red">
-		      <span onclick="document.getElementById('id01').style.display='none'" 
+		      <span onclick="document.getElementById('leave').style.display='none'" 
 		      class="w3-button w3-display-topright">&times;</span>
-		      <h2>Modal Header</h2>
+		      <h2>Kingdom 회원탈퇴</h2>
 		    </header>
-		</c:if>
 		    <div class="w3-container w3-margin-top w3-margin-bottom">
-		      <h4 class="w3-center w3-text-grey w3-margin-top w3-margin-bottom">${MSG}</h4>
+				<form method="POST" action="/kingdom/member/memberDel.cnu" 
+						id="dfrm" name="dfrm"
+						class="w3-col w3-padding w3-margin-bottom">
+					<input type="hidden" name="mno" id="mno2" value="${DATA.mno}">
+					<h2 class="w3-container w3-center w3-padding">Kingdom을 탈퇴하시겠습니까?</h2>
+					<label for="pw" class="w3-col m3 w3-text-grey ft18px">비밀번호 : </label>
+					<input type="password" id="pw" name="pw" 
+							class="w3-col m7 w3-input w3-border">
+					<div class="w3-col m2 pdh10">
+						<div class="w3-col w3-button w3-medium w3-red w3-hover-orange w3-left mt0" id="del">탈퇴처리</div>
+					</div>
+				</form>
 		    </div>
 		  </div>
-		</div>
+	</div>
+	
+	
+			<!-- 메세지 확인 모달 -->
+	<c:if test="${not empty MSG}">
+			<div id="id01" class="w3-modal" style="display: block;">
+			  <div class="w3-modal-content">
+			<c:if test="${MSG eq '회원 정보가 수정되었습니다.'}">
+			    <header class="w3-container w3-teal">
+			      <span onclick="document.getElementById('id01').style.display='none'" 
+			      class="w3-button w3-display-topright">&times;</span>
+			      <h2>Modal Header</h2>
+			    </header>
+			</c:if>
+			<c:if test="${MSG eq '회원 정보 수정에 실패했습니다.'}">
+			    <header class="w3-container w3-red">
+			      <span onclick="document.getElementById('id01').style.display='none'" 
+			      class="w3-button w3-display-topright">&times;</span>
+			      <h2>Modal Header</h2>
+			    </header>
+			</c:if>
+			<c:if test="${MSG eq '탈퇴처리에 실패했습니다.'}">
+			    <header class="w3-container w3-red">
+			      <span onclick="document.getElementById('id01').style.display='none'" 
+			      class="w3-button w3-display-topright">&times;</span>
+			      <h2>Modal Header</h2>
+			    </header>
+			</c:if>
+			    <div class="w3-container w3-margin-top w3-margin-bottom">
+			      <h4 class="w3-center w3-text-grey w3-margin-top w3-margin-bottom">${MSG}</h4>
+			    </div>
+			  </div>
+			</div>
+	</c:if>
 </c:if>
 	</div>
 </body>

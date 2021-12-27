@@ -159,6 +159,7 @@ public class Member {
 		List list = mDao.getList();
 		
 		mv.addObject("LIST", list);
+		mv.addObject("MSG", mVO.getMsg());
 		mv.addObject("COLOR", getColorList());
 		
 		mv.setViewName("member/memberList");
@@ -176,6 +177,81 @@ public class Member {
 		*/
 		mVO.setSdate();
 		return mVO;
+	}
+	
+	@RequestMapping("/myInfo.cnu")
+	public ModelAndView getMyInfo(ModelAndView mv, MemberVO mVO) {
+		mv.addObject("MSG", mVO.getMsg());
+		
+		mVO = mDao.getInfo(mVO);
+		mVO.setSdate();
+		mv.addObject("DATA", mVO);
+		mv.setViewName("member/memberInfo");;
+		return mv;
+	}
+	
+	@RequestMapping("/editInfo.cnu")
+	public ModelAndView editMyInfo(ModelAndView mv, MemberVO mVO) {
+		mv.addObject("MSG", mVO.getMsg());
+		
+		mVO = mDao.getInfo(mVO);
+		mVO.setSdate();
+		List<MemberVO> list = mDao.avtList();
+		mv.addObject("LIST", list);
+		mv.addObject("DATA", mVO);
+		mv.setViewName("member/edit");;
+		return mv;
+	}
+	
+	/**
+	 *  회원정보 수정 처리요청 처리함수
+	 */
+	@RequestMapping("/myInfoEditProc.cnu")
+	public ModelAndView editProc(ModelAndView mv, MemberVO mVO) {
+		int cnt = mDao.editInfo(mVO);
+		
+		if(cnt == 1) {
+			mv.addObject("MSG", "회원 정보가 수정되었습니다.");
+		} else {
+			mv.addObject("MSG", "회원 정보 수정에 실패했습니다.");
+		}
+		mv.addObject("MNO", mVO.getMno());
+		mv.addObject("VIEW", "/kingdom/member/myInfo.cnu");
+		mv.setViewName("member/redirect");
+		return mv;
+	}
+	
+	/**
+	 * 회원탈퇴 요청 처리함수
+	 */
+	@RequestMapping("/memberDel.cnu")
+	public ModelAndView memberDel(ModelAndView mv, HttpSession session, RedirectView rv, MemberVO mVO) {
+		int cnt = mDao.delMember(mVO);
+		String view = "/kingdom/";
+		
+		if(cnt == 1) {
+			// 탈퇴성공
+			// 세션지우고 로그아웃처리
+			session.removeAttribute("SID");
+			// 메인페이지로 리다이렉트
+/*
+			rv.setUrl("/kingdom/");
+			mv.setView(rv);
+ */
+			
+		} else {
+			// 실패한 경우
+			// 내 정보페이지로 다시 보내기
+			
+			// 데이터 심고
+			mv.addObject("MNO", mVO.getMno());
+			mv.addObject("MSG", "탈퇴처리에 실패했습니다.");
+			view = "/kingdom/member/myInfo.cnu";
+		}
+		mv.addObject("VIEW", view);
+		// 뷰 부르고
+		mv.setViewName("member/redirect");
+		return mv;
 	}
 	
 	public ArrayList getColorList() {

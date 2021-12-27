@@ -23,7 +23,7 @@
 </script>
 </head>
 <body>
-	<form method="POST" action="/kingdom/member/memberInfo.cnu" id="frm" name="frm">
+	<form method="POST" action="/kingdom/member/myInfo.cnu" id="frm" name="frm">
 		<input type="hidden" id="id" name="id" value="${SID}">
 	</form>
 	<div class="w3-content w3-center mw700">

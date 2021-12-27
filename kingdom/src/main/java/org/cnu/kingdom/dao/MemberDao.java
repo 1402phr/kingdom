@@ -42,4 +42,14 @@ public class MemberDao {
 	public List<MemberVO> getList(){
 		return sqlSession.selectList("mSQL.selList");
 	}
+	
+	// 회원탈퇴 데이터베이스 작업 전담 처리함수
+	public int delMember(MemberVO mVO) {
+		return sqlSession.delete("mSQL.removeMember", mVO);
+	}
+	
+	// 회원정보수정 데이터베이스 작업 전담 처리함수
+	public int editInfo(MemberVO mVO) {
+		return sqlSession.update("mSQL.editInfo", mVO);
+	}
 }
