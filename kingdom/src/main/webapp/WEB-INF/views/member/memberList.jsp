@@ -70,7 +70,7 @@
 </script>
 </head>
 <body>
-	<form method="POST" action="/kingdom/member/memberInfo.cls" id="frm">
+	<form method="POST" action="/kingdom/member/memberInfo.cnu" id="frm">
 		<input type="hidden" name="mno" id="mno1">
 	</form>
 	

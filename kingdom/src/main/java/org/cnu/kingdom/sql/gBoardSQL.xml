@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+	PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gSQL">
+	<select id="getTotal" resultType="int">
+		SELECT
+			count(*)
+		FROM
+			guestboard
+		WHERE
+			isshow = 'Y'
+	</select>
+	
+	<select id="getList" resultType="bVO" parameterType="page">
+		SELECT
+			rno, bno, mno, ano, body, wdate, id, avatar
+		FROM
+			(
+				SELECT
+					ROWNUM rno, bno, mno, ano, body, wdate, id, avatar
+				FROM
+					(
+						SELECT
+							bno, mno, a.ano, body, wdate, id, savename avatar
+						FROM
+							avatar a, member m, guestBoard g
+						WHERE
+							g.isshow = 'Y'
+							AND a.ano = m.ano
+							AND mno = bmno
+						ORDER BY
+							wdate desc
+					)
+			)
+		WHERE
+			rno BETWEEN #{startCont} AND #{endCont}
+	</select>
+	
+	<!-- 회원 작성 방명록 카운트 조회 -->
+	<select id="idCnt" resultType="int" parameterType="string">
+		SELECT
+			count(*)
+		FROM
+			member m, guestboard g
+		WHERE
+			g.isshow = 'Y'
+			AND mno = bmno
+			AND id = #{id}
+	</select>
+</mapper>

@@ -144,7 +144,7 @@ public class Member {
 		if(cnt == 1) {
 			// 가입 성공한 경우
 			session.setAttribute("SID", mVO.getId()); // 로그인 처리
-			rv.setUrl("/kingdom/");
+			rv.setUrl("/kingdom/guestBoard/gBoardList.cnu");
 		} else {
 			// 실패한 경우
 			rv.setUrl("/kingdom/member/join.cnu");

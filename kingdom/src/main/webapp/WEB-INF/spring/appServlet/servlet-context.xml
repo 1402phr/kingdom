@@ -29,6 +29,7 @@
 	</beans:bean>
 	
 	<beans:bean id="mDao" class="org.cnu.kingdom.dao.MemberDao" />
+	<beans:bean id="gDao" class="org.cnu.kingdom.dao.GuestDao" />
 	
 	<context:component-scan base-package="org.cnu.kingdom" />
 	

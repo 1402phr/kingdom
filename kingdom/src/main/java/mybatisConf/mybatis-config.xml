@@ -13,10 +13,13 @@
 	<!-- myBatis에서 사용할 자바클래스의 별칭을 설정 -->
 	<typeAliases>
 		<typeAlias alias="mVO" type="org.cnu.kingdom.vo.MemberVO" />
+		<typeAlias alias="bVO" type="org.cnu.kingdom.vo.BoardVO" />
+		<typeAlias alias="page" type="org.cnu.kingdom.util.PageUtil" />
 	</typeAliases>
 	
 	<!-- 질의명령 매핑 -->
 	<mappers>
 		<mapper resource="org/cnu/kingdom/sql/memberSQL.xml" />
+		<mapper resource="org/cnu/kingdom/sql/gBoardSQL.xml" />
 	</mappers>
 </configuration>

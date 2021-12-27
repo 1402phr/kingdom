@@ -21,7 +21,7 @@ $(document).ready(function(){
 				return;
 				break;
 			case 'gbtn':
-				spath = '/kingdom/guestBoard/guestBoard.cnu';
+				spath = '/kingdom/guestBoard/gBoardList.cnu';
 				break;
 			case 'irbtn':
 				spath = '/kingdom/reBoard/initRBD.cnu';

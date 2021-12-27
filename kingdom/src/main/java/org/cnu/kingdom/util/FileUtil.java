@@ -1,4 +1,4 @@
-package com.simple.www.util;
+package org.cnu.kingdom.util;
 
 /**
  * 	이 클래스는 파일 업로드에 필요한 기능을 처리하기 위해서 만든 유틸리티적 클래스이다.
