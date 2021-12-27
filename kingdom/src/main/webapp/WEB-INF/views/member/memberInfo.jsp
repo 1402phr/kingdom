@@ -83,21 +83,21 @@
 			    <header class="w3-container w3-teal">
 			      <span onclick="document.getElementById('id01').style.display='none'" 
 			      class="w3-button w3-display-topright">&times;</span>
-			      <h2>Modal Header</h2>
+			      <h2>회원 정보 수정 성공</h2>
 			    </header>
 			</c:if>
 			<c:if test="${MSG eq '회원 정보 수정에 실패했습니다.'}">
 			    <header class="w3-container w3-red">
 			      <span onclick="document.getElementById('id01').style.display='none'" 
 			      class="w3-button w3-display-topright">&times;</span>
-			      <h2>Modal Header</h2>
+			      <h2>회원 정보 수정 실패</h2>
 			    </header>
 			</c:if>
 			<c:if test="${MSG eq '탈퇴처리에 실패했습니다.'}">
 			    <header class="w3-container w3-red">
 			      <span onclick="document.getElementById('id01').style.display='none'" 
 			      class="w3-button w3-display-topright">&times;</span>
-			      <h2>Modal Header</h2>
+			      <h2>회원 탈퇴 처리 실패</h2>
 			    </header>
 			</c:if>
 			    <div class="w3-container w3-margin-top w3-margin-bottom">
