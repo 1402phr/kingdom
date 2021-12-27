@@ -1,9 +1,7 @@
 $(document).ready(function(){
 	$('.w3-button').click(function(){
 		var tmp = $(this).attr('id');
-/*
-		alert(tmp);
-*/
+
 		var spath = '';
 		switch(tmp){
 			case 'lbtn':
