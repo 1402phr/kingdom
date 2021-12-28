@@ -43,5 +43,10 @@ public class GuestDao {
 	}
 	
 	
-	
+	/**
+	 * 방명록 글 등록 데이터베이스 작업 전담 처리함수
+	 */
+	public int addContent(BoardVO bVO) {
+		return sqlSession.insert("gSQL.addGBoard", bVO);
+	}
 }

@@ -52,4 +52,9 @@ public class MemberDao {
 	public int editInfo(MemberVO mVO) {
 		return sqlSession.update("mSQL.editInfo", mVO);
 	}
+	
+	// 회원 아바타 정보 조회 전담 처리함수
+	public MemberVO getAvt(String id) {
+		return sqlSession.selectOne("mSQL.getAvt", id);
+	}
 }

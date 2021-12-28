@@ -11,6 +11,7 @@
 		WHERE
 			g.isshow = 'Y'
 			AND m.isshow = 'Y'
+			AND bmno = mno
 	</select>
 	
 	<select id="getList" resultType="bVO" parameterType="page">
@@ -50,4 +51,19 @@
 			AND mno = bmno
 			AND id = #{id}
 	</select>
+	
+	<insert id="addGBoard" parameterType="bVO">
+		<selectKey keyProperty="bno" resultType="int" order="BEFORE">
+			SELECT
+				NVL(MAX(bno) + 1, 1001)
+			FROM
+				guestboard
+		</selectKey>
+		
+		INSERT INTO
+			guestboard(bno, bmno, body)
+		VALUES(
+			#{bno}, #{mno}, #{body}
+		)
+	</insert>
 </mapper>

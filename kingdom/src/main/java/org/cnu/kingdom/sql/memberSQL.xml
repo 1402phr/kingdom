@@ -61,6 +61,20 @@
 		</if>
 	</select>
 	
+	<!-- 회원정보조회2 -->
+	<select id="getAvt" resultType="mVO" parameterType="string">
+		SELECT
+			mno, savename avatar
+		FROM
+			member m, avatar a
+		WHERE
+			isshow = 'Y'
+			AND m.ano = a.ano
+		<if test="id neq null">
+			AND id = #{id}
+		</if>
+	</select>
+	
 	
 	<insert id="addMember" parameterType="mVO">
 		<selectKey keyProperty="mno" resultType="int" order="BEFORE">

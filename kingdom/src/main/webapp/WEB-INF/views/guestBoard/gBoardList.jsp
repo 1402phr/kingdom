@@ -121,15 +121,21 @@
 			<div class="w3-bar w3-border w3-margin-top w3-margin-bottom">
 			  <div class="w3-bar-item w3-hover-blue pbutton" id="startbtn">&laquo;</div>
 		<c:forEach var="page" begin="${PAGE.startPage}" end="${PAGE.endPage}">
-			  <div class="w3-bar-item w3-hover-blue pbutton">${page}</div>
+			  <c:if test="${PAGE.nowPage eq page }">
+			  	<div class="w3-bar-item w3-lime w3-hover-blue pbutton">${page}</div>
+			  </c:if>
+			  <c:if test="${PAGE.nowPage ne page }">
+			  	<div class="w3-bar-item w3-hover-blue pbutton">${page}</div>
+			  </c:if>
 		</c:forEach>
 			  <div class="w3-bar-item w3-hover-blue pbutton" id="endbtn">&raquo;</div>
 			</div>
 		</div>
 		
-		<form method="POST" action="/kingdom/guestBoard/gboardList.cnu" id="frm" name="frm">
+		<form method="POST" action="/kingdom/guestBoard/gBoardList.cnu" id="frm" name="frm">
 			<input type="hidden" name="nowPage" id="nowPage" value="${PAGE.nowPage}">
 		</form>
+		
 	</div>
 </body>
 </html>

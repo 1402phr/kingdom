@@ -57,6 +57,10 @@ public class PageUtil {
 		setPage(nowPage, totalCount, pageRow, pageGroup);
 	}
 	
+	public void setPage(int totalCount, int pageRow, int pageGroup) {
+		setPage(nowPage, totalCount, pageRow, pageGroup);
+	}
+	
 	public void setPage(int nowPage, int totalCount) {
 		setPage(nowPage, totalCount, pageRow, pageGroup);
 	}
@@ -107,7 +111,13 @@ public class PageUtil {
 	public void calcCont() {
 		startCont = (nowPage -1) * pageRow + 1;
 		endCont = nowPage * pageRow;
+		
+		if(endCont > totalCount) {
+			endCont = totalCount;
+		}
 	}
+	
+	
 	public int getNowPage() {
 		return nowPage;
 	}
