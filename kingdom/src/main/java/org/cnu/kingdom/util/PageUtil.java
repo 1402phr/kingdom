@@ -17,8 +17,8 @@ public class PageUtil {
 	private int nowPage = 1; 	// 현재 보고있는 페이지
 	private int totalCount;	// 총 게시물 수
 	
-	private int pageRow;	// 한페이지당 보여줄 게시물 수
-	private int pageGroup;	// 한 화면당 이동가능 페이지 수
+	private int pageRow = 3;	// 한페이지당 보여줄 게시물 수
+	private int pageGroup = 3;	// 한 화면당 이동가능 페이지 수
 	
 	private int startPage;	// 해당화면에서 나타날 이동 시작 페이지
 	private int endPage;
@@ -30,24 +30,9 @@ public class PageUtil {
 	
 	public PageUtil() {}
 	
-	public void setVar(int nowPage, int totalCount, int pageRow, int pageGroup) {
-		this.nowPage = nowPage;
-		this.totalCount = totalCount;
-		this.pageRow = pageRow;
-		this.pageGroup = pageGroup;
-		
-		// 나머지 변수를 계산해서 채워준다.
-		calcPage();
-		calcStart();
-		calcEnd();
-		calcCont();
-	}
-	
 	public PageUtil(int nowPage, int totalCount) {
 		this.nowPage = nowPage;
 		this.totalCount = totalCount;
-		this.pageRow = 3;
-		this.pageGroup = 3;
 		
 		// 나머지 변수를 계산해서 채워준다.
 		calcPage();
@@ -68,8 +53,12 @@ public class PageUtil {
 		calcCont();
 	}
 	
+	public void setPage(int totalCount) {
+		setPage(nowPage, totalCount, pageRow, pageGroup);
+	}
+	
 	public void setPage(int nowPage, int totalCount) {
-		setPage(nowPage, totalCount, 3, 3);
+		setPage(nowPage, totalCount, pageRow, pageGroup);
 	}
 	
 	public void setPage(int nowPage, int totalCount, int pageRow, int pageGroup) {

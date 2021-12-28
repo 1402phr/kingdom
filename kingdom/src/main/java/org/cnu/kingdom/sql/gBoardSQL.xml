@@ -7,9 +7,10 @@
 		SELECT
 			count(*)
 		FROM
-			guestboard
+			guestboard g, member m
 		WHERE
-			isshow = 'Y'
+			g.isshow = 'Y'
+			AND m.isshow = 'Y'
 	</select>
 	
 	<select id="getList" resultType="bVO" parameterType="page">
@@ -27,6 +28,7 @@
 							avatar a, member m, guestBoard g
 						WHERE
 							g.isshow = 'Y'
+							AND m.isshow = 'Y'
 							AND a.ano = m.ano
 							AND mno = bmno
 						ORDER BY
