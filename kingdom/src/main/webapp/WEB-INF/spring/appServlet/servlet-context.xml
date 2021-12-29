@@ -30,6 +30,7 @@
 	
 	<beans:bean id="mDao" class="org.cnu.kingdom.dao.MemberDao" />
 	<beans:bean id="gDao" class="org.cnu.kingdom.dao.GuestDao" />
+	<beans:bean id="bDao" class="org.cnu.kingdom.dao.BoardDao" />
 	
 	<context:component-scan base-package="org.cnu.kingdom" />
 	

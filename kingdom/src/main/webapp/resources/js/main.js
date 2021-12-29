@@ -32,6 +32,9 @@ $(document).ready(function(){
 			case 'sbtn':
 				spath = '/kingdom/survey/surveyInfo.cnu';
 				break;
+			case 'fbtn':
+				spath = '/kingdom/board/boardList.cnu';
+				break;
 		}
 		$(location).attr('href', spath);
 	});

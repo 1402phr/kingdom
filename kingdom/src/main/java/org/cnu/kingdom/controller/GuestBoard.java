@@ -46,6 +46,12 @@ public class GuestBoard {
 		}
 		// 게시글 리스트 조회
 		List<BoardVO> list = gDao.getList(page);
+		/*
+			웹 문서에서 탭키와 엔터키 그리고 스페이스바는 
+			몇개 오던지 공백 하나로 표현된다.
+			문서에서 작성하던데로 표현하려면(특히 줄바꿈..)
+			태그로 바꿔서 웹문서에 표현해야 한다.
+		 */
 		for(BoardVO vo : list) {
 			vo.setBody(vo.getBody().replace("\r\n", "<br>"));
 		}

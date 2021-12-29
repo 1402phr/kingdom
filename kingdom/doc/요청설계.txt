@@ -80,3 +80,20 @@
 뷰		 : 	/WEB-INF/views/guestBoard/gBoardList.jsp
 ----------------------------------------------------------------------------------------------------------------------
 
+# 방명록 작성 폼보기 요청
+요청내용 :	/kingdom/guestBoard/gBoardWrite.cnu
+파라미터 :	무
+컨트롤러 :	org.cnu.kingdom.controller.GuestBoard
+실행함수 :	gBoardWrite()
+뷰		 : 	/WEB-INF/views/guestBoard/gBoardWrite.jsp
+----------------------------------------------------------------------------------------------------------------------
+
+# 방명록 글 등록 요청
+요청내용 :	/kingdom/guestBoard/writeProc.cnu
+파라미터 :	무
+컨트롤러 :	org.cnu.kingdom.controller.GuestBoard
+실행함수 :	writeProc()
+뷰		 : 	실패 ] /kingdom/guestBoard/gBoardWrite.cnu
+			성공 ] /kingdom/guestBoard/gBoardList.cnu
+----------------------------------------------------------------------------------------------------------------------
+
