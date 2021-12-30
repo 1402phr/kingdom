@@ -47,11 +47,6 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 	
-	<!-- JSON2 -->
-	<beans:bean id="jsonHttpMessageConverter" 
-			class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<beans:property name="supportedMediaTypes" value="application/json" />
-	</beans:bean>
 	
 	<!-- DAO bean 처리 -->
 	

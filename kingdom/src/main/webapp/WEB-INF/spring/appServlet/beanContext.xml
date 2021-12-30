@@ -1,10 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- 이 문서는 dao 클래스를 빈처리하기 위한 문서 -->
+<!-- 이 문서는 빈처리하기 위한 문서 -->
 <beans
 	xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 						https://www.springframework.org/schema/beans/spring-beans.xsd">
+						
+	<!-- JSON2 -->
+	<bean id="jsonHttpMessageConverter" 
+			class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+		<property name="supportedMediaTypes" value="application/json" />
+	</bean>
 	
 	<!-- dao bean 처리 -->
 	<bean id="mDao" class="org.cnu.kingdom.dao.MemberDao" />
