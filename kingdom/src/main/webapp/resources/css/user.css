@@ -108,6 +108,16 @@
 	height: 100px;
 } 
 
+.hideBox {
+	overflow: hidden;
+}
+
+.imgFr100 {
+	width: 98px;
+	height: 98px;
+	overflow: hidden;
+}
+
 .imgBox230 {
 	width: 230px;
 	height: 230px;

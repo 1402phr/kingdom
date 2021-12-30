@@ -64,6 +64,7 @@ public class FileUtil {
 			
 			// 파일 이름을 다시 만든다.
 			oldName = preStr + "(" + count + ")" + suffStr;
+			System.out.println("## futil oname : " + oldName);
 			
 			// 새로 만들어진 이름으로 이 파일도 존재하는지를 검사한다.
 			file = new File(path, oldName);
@@ -79,7 +80,7 @@ public class FileUtil {
 		
 		// 저장 경록를 지정...
 		String path = this.getClass().getResource("").getPath();
-		path = path.substring(0, path.indexOf("/WEB-INF")) + "/WEB-INF/resources" + dir;
+		path = path.substring(0, path.indexOf("/WEB-INF")) + "/resources" + dir;
 		
 		System.out.println("path : " + path);
 		

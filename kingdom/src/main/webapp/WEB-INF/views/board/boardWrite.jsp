@@ -85,8 +85,8 @@
 					$('#filefr').append('<input type="file" name="file" id="file' 
 											+ idCnt + '" class="w3-col w3-input w3-round w3-border mgb10 file">');
 					
-					$('#fileImg').append('<div class="inblock box120 pdAll10 mgl10 w3-border w3-broder-grey w3-card" id="img_' + tid + '">' +
-												'<div class="w3-col imgBox100">' +
+					$('#fileImg').append('<div class="inblock box120 pdAll10 mgl10 hideBox w3-border w3-broder-grey w3-card" id="img_' + tid + '">' +
+												'<div class="w3-col imgFr100">' +
 												'<img class="w3-col img100" src="' + img + '">' +
 											'</div>' +
 										'</div>');

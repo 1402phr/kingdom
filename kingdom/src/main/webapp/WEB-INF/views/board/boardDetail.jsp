@@ -73,8 +73,8 @@
 				첨부파일 없음
 			</c:if>
 			<c:forEach var="data" items="${LIST}">
-						<div class="inblock box120 pdAll10 mgl10 w3-border w3-broder-grey w3-card">
-							<div class="w3-col imgBox100">
+						<div class="inblock box120 pdAll10 mgl10 hideBox w3-border w3-broder-grey w3-card">
+							<div class="w3-col imgFr100 ">
 								<img class="w3-col img100" src="/kingdom/img/upload/${data.savename}">
 							</div>
 						</div>
