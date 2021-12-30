@@ -4,7 +4,7 @@ import java.util.*;
 import java.text.*;
 
 public class MemberVO {
-	private int mno, ano;
+	private int mno, ano, cnt;
 	private String id, pw, name, mail, tel, gen, avatar, sdate, msg;
 	private Date joindate;
 	public int getMno() {
@@ -18,6 +18,12 @@ public class MemberVO {
 	}
 	public void setAno(int ano) {
 		this.ano = ano;
+	}
+	public int getCnt() {
+		return cnt;
+	}
+	public void setCnt(int cnt) {
+		this.cnt = cnt;
 	}
 	public String getId() {
 		return id;

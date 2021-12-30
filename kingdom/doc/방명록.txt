@@ -1,0 +1,22 @@
+1. 방명록 테이블 만들고
+	회원 추가해주고
+	
+	깃허브 : doc/cnu.sql
+
+2. 
+	main.js
+	mybatis-config.xml
+	servlet-context.xml
+	sql/gBoardSQL.xml
+	dao/GuestDao.java
+	controller/GuestBoard.java
+	vo/BoardVO.java
+	util/PageUtil.java
+	
+	/WEB-INF/views/guestBoard
+	
+	복사해주세요...
+	
+2.
+	
+	

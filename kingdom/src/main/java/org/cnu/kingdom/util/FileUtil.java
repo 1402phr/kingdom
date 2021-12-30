@@ -1,68 +1,119 @@
 package org.cnu.kingdom.util;
 
+import java.io.*;
+import java.util.ArrayList;
+
+import org.cnu.kingdom.vo.FileVO;
+import org.springframework.web.multipart.MultipartFile;
+
 /**
- * 	이 클래스는 파일 업로드에 필요한 기능을 처리하기 위해서 만든 유틸리티적 클래스이다.
- * 
+ *  이 클래스는 파일 업로드에 필요한 기능을 처리하기 위한 유틸리티 클래스
  * @author	전은석
- * @since	2019.12.16
- * @version	v.1.0
+ * @since	2021.12.30
+ * @version v.1.0
  * @see
- * 
- * 			변경이력
- * 				2019.12.16		-	클래스 제작		- 담당자 : 전은석
+ * 			작업이력 ]
+ * 				2021.12.30	- 	담당자 : 전은석
+ * 								클래스 제작
  *
  */
-
-import java.io.*;
-
 public class FileUtil {
-	/*
-		파일 이름이 중복되면 이전에 업로드한 파일에 덮어쓰기가 된다.
-		따라서 혹시 같은 이름의 파일이 존재하면 
-		파일이름을 바꿔서 저장해줘야
-		이전에 업로드했던 동일한 이름의 파일도 유지가 되고
-		내가 현재 업로드하는 파일도 저장이 된다.
-	 */
-	public static String rename(String path, String oldName) {
+/*
+	파일이름이 중복되면 덮어쓰기가 된다.
+	따라서 중복된 이름의 파일이 있으면 이름을 바꿔서 저장해야 한다.
+	중복된 이름의 파일이 존재하면 파일의 이름을 자꿔주는 함수를 만들자.
+ */
+	// 단일 파일 저장이름 생성 함수
+	public String rename(String path, String oldName) {
 		/*
-			정책 설정 ]
-				혹시 같은 이름의 파일이 존재하면 _1을 붙여서 이름을 바꾸는 방식을 사용하자.
-				예]
-					sample.jpg 라는 파일을 업로드 하려하는데
-					이미 업로드된 파일의 이름이 존재한다면 
-					sample_1.jpg
-					라는 이름으로 변경시켜서 저장하자.
+			규칙 ]
+				같은이름의 파일이 존재하면 파일 이름뒤에 (숫자)를 붙여서 처리하도록 하자.
+				
+				예 ]
+					file.jpg	==>		file(1).jpg,     file(2).jpg
+					
+					
+				참고 ]
+					
+					file.jpg
+						=====> "file" + ".jpg"	====> "file" + "(" + count + ")" + ".jpg"
+				==>	file(1).jpg
+				==> file(2).jpg
 		 */
+	
 		
-		int count = 0; // 동일한 파일의 경우 붙여질 번호를 기억할 변수
-		/*
-			sample_1.jpg 이 이을 경우는
-			sample_2.jpg 라는 이름으로 파일이 만들어져야 될 것이다.
-		 */
-		String tmpName = oldName; // 현재 이름을 따로 기억해 놓는다.
+		int count = 0;
+		String tmpName = oldName;
+		int len = tmpName.lastIndexOf(".");
+		// .을 기준으로 앞의 문자열과 뒤의 확장자를 분리한다.
+		String preStr = tmpName.substring(0, len);
+		String suffStr = tmpName.substring(len);
 		
 		File file = new File(path, oldName);
-		// 먼저 oldName으로 만들어진 파일이 있는지 체크한다.
-		
 		while(file.exists()) {
-			// 이 경우는 이미 oldName으로 된 파일이 업로드 되어 있는 경우이다.
-			// 따라서 다른이름으로 바꿔줘야 한다.
-			// 이미 파일이 존재하는 경우는
-			// 이름을 바꿔줘야 한다.
-			// 이때 우리는 _에 숫자를 붙여서 파일이름을 만들기로 했다.
+			/*
+			 *  같은 이름의 파일이 존재하는 경우는 이름을 바꿔준다.
+			 *  그리고 붙일 번호를 증가 시킨다.
+			 *  
+			 *  파일이 존재하는 경우는 파일이름을 만들어서 다시 검사해야 한다.
+			 *  file.jpg
+						=====> "file" 	+ 	".jpg"	====> "file" + "(" + count + ")" + ".jpg"
+								preStr		suffStr			preStr 						suffStr
+			 */
 			count++;
-			int len = tmpName.lastIndexOf(".");
-			String tmp1 = tmpName.substring(0, len);
-			oldName = tmp1 + "_" + count + tmpName.substring(len);
 			
+			// 파일 이름을 다시 만든다.
+			oldName = preStr + "(" + count + ")" + suffStr;
+			
+			// 새로 만들어진 이름으로 이 파일도 존재하는지를 검사한다.
 			file = new File(path, oldName);
 		}
-		
-		//  이 줄이 실행되는 경우는 oldName으로 입력한 파일이 없는 경우
-		// 즉 file.exists() 의 결과가 false 인 경우
 		
 		return oldName;
 	}
 	
-
+	// 다중파일 업로드 처리함수
+	public ArrayList<FileVO> saveProc(MultipartFile[] file, int bno, String dir) {
+		// 파일 저장이름들을 기억할 변수
+		ArrayList<FileVO> list = new ArrayList<FileVO>();
+		
+		// 저장 경록를 지정...
+		String path = this.getClass().getResource("").getPath();
+		path = path.substring(0, path.indexOf("/WEB-INF")) + "/WEB-INF/resources" + dir;
+		
+		System.out.println("path : " + path);
+		
+		try{
+			for(int i = 0 ; i < file.length ; i++) {
+				FileVO fVO = new FileVO();
+				// 파일 원본이름을 알아낸다.
+				String oriName = file[i].getOriginalFilename();
+				// 만약 뷰에서 이 태그를 비워서 전송했다면 이 작업은 건너뛰고 다음파일 작업을 해야한다.
+				if(oriName == null) {
+					continue;
+				}
+				
+				// 이 이름의 파일이 존재하는지 검사한다.
+				String saveName = rename(path, oriName);
+				
+				// 이제 임시로 업로드된 파일을 실제 저장 경로에 저장한다.
+				// 그리고 데이터베이스에 저장할 데이터들을 기억시킨다.
+				fVO.setOriname(oriName);
+				fVO.setSavename(saveName);
+				fVO.setLen(file[i].getSize());
+				fVO.setDir(dir);
+				fVO.setBno(bno);
+				
+				// 리스트에 파일정보를 추가해준다.
+				list.add(fVO);
+				
+				// 실제 저장경로에 저장한다.
+				File tmp = new File(path, saveName);
+				file[i].transferTo(tmp); // 실제저장 실행 함수
+			}
+		} catch(Exception e) {}
+		
+		// 리스트 반환하고
+		return list;
+	}
 }

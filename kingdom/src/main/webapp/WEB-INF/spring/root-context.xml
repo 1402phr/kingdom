@@ -11,11 +11,6 @@
 	<!-- Root Context: defines shared resources visible to all other web components -->
 	<context:annotation-config/>
 	
-	<!-- JSON2 -->
-	<bean id="jsonHttpMessageConverter" 
-			class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
-		<property name="supportedMediaTypes" value="application/json" />
-	</bean>
 	
 	<!-- 
 		먼저 dataSource 사용을 등록해준다.

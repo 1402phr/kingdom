@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- 이 문서는 dao 클래스를 빈처리하기 위한 문서 -->
+<beans
+	xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						https://www.springframework.org/schema/beans/spring-beans.xsd">
+	
+	<!-- dao bean 처리 -->
+	<bean id="mDao" class="org.cnu.kingdom.dao.MemberDao" />
+	<bean id="gDao" class="org.cnu.kingdom.dao.GuestDao" />
+	<bean id="bDao" class="org.cnu.kingdom.dao.BoardDao" />
+	
+	<!-- Util BEAN 처리 -->
+	<bean id="page" class="org.cnu.kingdom.util.PageUtil" />
+	<bean id="futil" class="org.cnu.kingdom.util.FileUtil" />
+	
+	<!-- Service bean 처리 -->
+	<bean id="bSrvc" class="org.cnu.kingdom.service.BoardService" />
+</beans>

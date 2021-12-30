@@ -14,6 +14,7 @@
 	<typeAliases>
 		<typeAlias alias="mVO" type="org.cnu.kingdom.vo.MemberVO" />
 		<typeAlias alias="bVO" type="org.cnu.kingdom.vo.BoardVO" />
+		<typeAlias alias="fVO" type="org.cnu.kingdom.vo.FileVO" />
 		<typeAlias alias="page" type="org.cnu.kingdom.util.PageUtil" />
 	</typeAliases>
 	
@@ -21,5 +22,6 @@
 	<mappers>
 		<mapper resource="org/cnu/kingdom/sql/memberSQL.xml" />
 		<mapper resource="org/cnu/kingdom/sql/gBoardSQL.xml" />
+		<mapper resource="org/cnu/kingdom/sql/boardSQL.xml" />
 	</mappers>
 </configuration>
